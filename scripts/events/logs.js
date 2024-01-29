@@ -12,7 +12,7 @@ module.exports.config = {
 module.exports.run = async function({ api, event, Threads }) {
     const logger = require("../../ryuko/catalogs/ryukoc.js");
     if (!global.configModule[this.config.name].enable) return;
-    var formReport =  "bot notification" +
+    var formReport =  "system bot notification for operator" +
                         "\n\nthread id : " + event.threadID +
                         "\naction : {task}" +
                         "\nuser id : " + event.author +
@@ -20,18 +20,18 @@ module.exports.run = async function({ api, event, Threads }) {
         task = "";
     switch (event.logMessageType) {
         case "log:thread-name": {
-            const oldName = (await Threads.getData(event.threadID)).name || "name does not exist",
-                    newName = event.logMessageData.name || "name does not exist";
-            task = "user changes group name from : '" + oldName + "' to '" + newName + "'";
+            const oldName = (await Threads.getData(event.threadID)).name || "this name cannot find on botdata",
+                    newName = event.logMessageData.name || "this name cannot find on botdata";
+            task = "member changed the group namefrom : '" + oldName + "' to '" + newName + "'";
             await Threads.setData(event.threadID, {name: newName});
             break;
         }
         case "log:subscribe": {
-            if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) task = "the user added the bot to a new group";
+            if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) task = "user added the bot to a new group";
             break;
         }
         case "log:unsubscribe": {
-            if (event.logMessageData.leftParticipantFbId== api.getCurrentUserID()) task = "the user kicked the bot out of the group"
+            if (event.logMessageData.leftParticipantFbId== api.getCurrentUserID()) task = "user kicked the bot out of the group"
             break;
         }
         default: 

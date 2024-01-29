@@ -17,7 +17,7 @@ module.exports.run = async function({ api, event,Threads }) {
 	if  (checkban.includes(checkban[0])) return
 	else if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
 api.changeNickname(`${(!global.config.BOTNAME) ? "ryuko" : global.config.BOTNAME} ai`, threadID, api.getCurrentUserID());
-		return api.sendMessage(`bot connected successfully\n\nabout me?\nbot name : ${global.config.BOTNAME}\nbot prefix : ${global.config.PREFIX}\n\nbot data?\nusers : ${global.data.allUserID.length}\ngroups : ${global.data.allThreadID.length}\n\nhow to use?\n${global.config.PREFIX}help (command list)\n${global.config.BOTNAME} (question) - no prefix\ntalk (text) - no prefix\n\nthankyou for using ${global.config.BOTNAME} ai.`, threadID);
+		return api.sendMessage(`bot project connected to the server succeed\n\nabout me?\nbot name : ${global.config.BOTNAME}\nbot prefix : ${global.config.PREFIX}\n\nbot data?\nusers : ${global.data.allUserID.length}\ngroups : ${global.data.allThreadID.length}\n\nhow to use?\n${global.config.PREFIX}help (command list)\n${global.config.BOTNAME} (question) - no prefix\ntalk (text) - no prefix\n\nthankyou for using ${global.config.BOTNAME} ai.`, threadID);
 	}
 	else {
 		try {
